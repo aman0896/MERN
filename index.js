@@ -105,5 +105,3 @@ const PlaySound = (btn) => {
 for (i = 0; i <= button.length; i++) {
     PlaySound(button[i]);
 }
-
-// stopButton.addEventListener('click', () => {});
