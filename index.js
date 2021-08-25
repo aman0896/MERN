@@ -34,6 +34,12 @@
 //     }
 // });
 
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+
+const array = array1.concat(array2);
+console.log(array);
+
 const button = document.querySelectorAll('#piano-btn');
 console.log(button);
 
