@@ -6,3 +6,6 @@ export const signupApi = '/employee/signup';
 
 //login
 export const loginApi = '/employee/login';
+
+//verifyUser
+export const verifyUser = '/employee/verify-user';

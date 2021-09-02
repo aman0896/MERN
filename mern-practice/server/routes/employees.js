@@ -8,6 +8,7 @@ const {
 } = require('../DBController/DBManagement/DBController');
 const EmployeeSchema = require('../DBController/DBSchema/employeeSchema');
 const { FileUpload } = require('../Utils/fileUpload');
+const { SignJWt, VerifyToken } = require('../Utils/jwt');
 const {
     PasswordEncryption,
     PasswordCheck,
@@ -32,6 +33,8 @@ router.post('/login', async (req, res) => {
         if (req.body) {
             console.log(req.body);
             const { email, password } = req.body;
+            const token = SignJWt(email);
+            console.log(token, 'jwt');
             const employee = await GetDataByEmail(EmployeeSchema, email);
             if (employee) {
                 console.log(employee, 'employee');
@@ -42,7 +45,7 @@ router.post('/login', async (req, res) => {
                 if (compare) {
                     return res.json({
                         msg: 'login success',
-                        token: email,
+                        token: token,
                         success: true,
                     });
                 } else
@@ -58,6 +61,13 @@ router.post('/login', async (req, res) => {
         }
     } catch (err) {
         res.json(err);
+    }
+});
+
+router.get('/verify-user', VerifyToken, (req, res) => {
+    const data = req.user;
+    if (data) {
+        return res.json({ data: data, success: true });
     }
 });
 

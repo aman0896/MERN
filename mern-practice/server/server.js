@@ -4,7 +4,7 @@ const app = express();
 var dateFormat = require('dateformat');
 const date = Date.now();
 console.log(date);
-
+console.log(require('crypto').randomBytes(64).toString('hex'));
 const newDate = new Date(date);
 console.log(newDate.toLocaleString().split(',')[0]);
 console.log(
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept'
+        'Origin, X-Requested-With, Content-Type, Accept, authorization'
     );
     res.header(
         'Access-Control-Allow-Methods',
